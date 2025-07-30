@@ -113,6 +113,11 @@
       font-weight: 800; letter-spacing: .5px; text-transform: uppercase;
       display: inline-flex; align-items: center; gap: .6rem;
     }
+    .logo {
+      height: 32px; width: auto; filter: brightness(1.1) contrast(1.1);
+      transition: filter .2s ease;
+    }
+    .logo:hover { filter: brightness(1.2) contrast(1.2); }
     .badge {
       height: 10px; width: 10px; border-radius: 50%;
       background: radial-gradient(circle at 30% 30%, var(--accent), transparent 60%),
@@ -159,6 +164,17 @@
       100%{ clip-path: polygon(0 30%,100% 30%,100% 32%,0 32%); }
     }
 
+    .hero-logo {
+      margin-bottom: 32px;
+    }
+    .hero-logo-img {
+      height: 500px; width: auto; filter: brightness(1.1) contrast(1.1);
+      transition: filter .3s ease, transform .3s ease;
+    }
+    .hero-logo-img:hover { 
+      filter: brightness(1.2) contrast(1.2); 
+      transform: scale(1.05);
+    }
     .lead {
       max-width: 80ch; margin: 32px auto 40px; color: var(--fg-1);
       font-size: clamp(18px, 2.5vw, 22px);
@@ -286,7 +302,7 @@
   <nav class="nav">
     <div class="container nav-inner">
       <div class="brand">
-        <span class="badge"></span>
+        <img src="assets/ROVI_logo_v7.web.png" alt="ROVI Logo" class="logo">
         <span>ROVI</span>
       </div>
       <div>
@@ -301,6 +317,9 @@
   </nav>
 
   <header class="hero container">
+    <div class="hero-logo">
+      <img src="assets/ROVI_logo_v7.web.png" alt="ROVI Logo" class="hero-logo-img">
+    </div>
     <h1 class="glitch" data-text="Rapid Operational Validation Initiative">Rapid Operational Validation Initiative</h1>
     <p class="lead">
       DOE's Rapid Operational Validation Initiative (ROVI) is intended to address critical gaps in data needs to evaluate the long-term performance of energy storage technologies and to accelerate the pace for technology development. The six lab ROVI team (ANL-INL-NREL-ORNL-PNNL-Sandia) is primarily focused on accelerating the time from lab to market for long duration energy storage (LDES) systems by employing data-driven tools to predict their operational lifetimes. ROVI will develop a suite of adaptive AI/ML modeling tools based on data from laboratory testing and model simulations that will be validated with data from field deployed systems supported by DOE's Office of Electricity (OE) and Office of Clean Energy Demonstrations (OCED).
