@@ -223,6 +223,13 @@
     .links-grid {
       display: grid; gap: 24px;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 1s cubic-bezier(.77,0,.175,1), transform 1s cubic-bezier(.77,0,.175,1);
+    }
+    .links-grid.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
     
     .link-card {
@@ -233,7 +240,13 @@
       backdrop-filter: var(--blur);
       box-shadow: var(--shadow);
       padding: 24px;
-      transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s cubic-bezier(.77,0,.175,1);
+    }
+    .link-card.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
     .link-card:hover {
       transform: translateY(-2px);
@@ -339,7 +352,7 @@
 
     <section id="links">
       <h2 class="section-title">Resources & Tools</h2>
-      <div class="links-grid">
+      <div class="links-grid" id="resources-tools">
         <article class="link-card">
           <h3>ROVI Test Platform</h3>
           <p>Access the main ROVI testing and validation platform for energy storage technologies.</p>
@@ -419,6 +432,25 @@
     document.querySelectorAll('section, .infinite-content').forEach(el => {
       observer.observe(el);
     });
+
+    // Resources & Tools grid observer
+    const resourcesGrid = document.getElementById('resources-tools');
+    if (resourcesGrid) {
+      const gridObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            resourcesGrid.classList.add('visible');
+            // Animate each card in sequence
+            const cards = resourcesGrid.querySelectorAll('.link-card');
+            cards.forEach((card, i) => {
+              setTimeout(() => card.classList.add('visible'), i * 120);
+            });
+            gridObserver.disconnect();
+          }
+        });
+      }, { threshold: 0.2 });
+      gridObserver.observe(resourcesGrid);
+    }
 
     // Infinite scroll functionality
     const infiniteContainer = document.getElementById('infinite-content');
