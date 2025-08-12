@@ -26,6 +26,7 @@ jobs:
   deploy:
     environment:
       name: github-pages
+      url: https://rovi-org.github.io/
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
